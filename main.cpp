@@ -57,7 +57,51 @@ int main(){
     pointer(SHOW);
     setupscreen();
     exitcode=1;
-    while(exitcode){}
+    while(exitcode)
+    {
+            if(kbhit())
+	        {
+	            ch=getch();
+	            if(ch==27) break;
+	            if(ch==75) a--;
+	            if(ch==77) a++;
+	            check_keys(x,y);
+	            switch(ch)
+	            {
+		            case 'a':case'A':key=0;break;
+		            case 's':case'S':key=1;break;
+		            case 'd':case'D':key=2;break;
+		            case 'f':case'F':key=3;break;
+		            case 'j':case'J':key=4;break;
+		            case 'k':case'K':key=5;break;
+		            case 'l':case'L':key=6;break;
+	            }
+	            sound(freq[key]*a);
+	            delay(80);
+	            nosound();
+	        }
+	        getmouse(&b,&x,&y);
+	        if(b==1)
+	        {
+		        while(b==1)
+		        {
+			        getmouse(&b,&x,&y);
+			        key=check_xy(x,y);
+			        if(key!=-1 && key<7)
+		        	{
+		        		sound(freq[key]*a);
+		        	}
+		        	else if(key>6)
+			        {
+				         sound(freq[12-key]*(a/2));
+			        }
+		    }
+		    nosound();
+		    check_keys(x,y);
+	        }
+        }
+        
+    }
     textbackground(0);
     clrscr();
     _setcursortype(_NORMALCURSOR);
