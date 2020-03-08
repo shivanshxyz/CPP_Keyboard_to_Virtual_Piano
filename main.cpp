@@ -198,3 +198,16 @@ void pointer(int on)
    int86(0x33,&input,&output);
 }
 
+void restrictmouse(int x1,int y1,int x2,int y2)
+{
+   input.x.ax=7;
+   input.x.cx=x1/8;
+   input.x.dx=x2/8;
+   int86(0x33,&input,&output);
+   input.x.ax=8;
+   input.x.cx=y1/8;
+   input.x.dx=y2/8;
+   int86(0x33,&input,&output);
+}
+
+
