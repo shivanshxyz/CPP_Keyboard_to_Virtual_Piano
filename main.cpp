@@ -192,3 +192,9 @@ int initmouse()
  return(output.x.ax==0 ? -1 : 0);
 }
 
+void pointer(int on)
+{
+   input.x.ax=on;
+   int86(0x33,&input,&output);
+}
+
