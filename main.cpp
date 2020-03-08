@@ -109,4 +109,30 @@ int main(){
 
 }  //EOF
 
+void setupscreen() /* Display screen settings */
+{
+ _setcursortype(_NOCURSOR);
+ textbackground(backcolor);
+ clrscr();
+ drawpiano(9,17);
+ BOX(4,5,8,5,0);
+ BOX(5,5,7,5,1);
+ textcolor(15);
+ gotoxy(70,5);
+ cprintf(">Quit<");
+ gotoxy(4,4);
+ cprintf("Range");
+ textbackground(0);
+ gotoxy(8,5);
+ cprintf("");
+ gotoxy(4,5);
+ cprintf("");
+ gotoxy(6,5);
+ cprintf("%d",a);
+ textcolor(14);
+ textbackground(backcolor+7);
+ gotoxy(30,4);
+ cprintf(" VIRTUAL PIANO ");
+
+}
 
