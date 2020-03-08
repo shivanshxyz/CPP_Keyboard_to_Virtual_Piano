@@ -170,3 +170,19 @@ void drawpiano(int x,int y) /* Drawing of piano */
  pianokey(x+t*5,y);
  pianokey(x+t*6,y);
 }
+
+void BOX(int c,int r,int c1,int r1,int col)
+{
+ int i,j;
+ textcolor(col);
+ for(i=r;i<=r1;i++)
+ {
+	for(j=c;j<=c1;j++)
+	{
+		gotoxy(j,i);
+		cprintf("Û");
+	}
+ }
+}
+
+
