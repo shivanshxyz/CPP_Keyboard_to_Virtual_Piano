@@ -210,4 +210,12 @@ void restrictmouse(int x1,int y1,int x2,int y2)
    int86(0x33,&input,&output);
 }
 
+void getmouse(int *button,int *x,int *y)
+{
+  input.x.ax=3;
+  int86(0x33,&input,&output);
+  *button=output.x.bx;
+  *x=output.x.cx/8;
+  *y=output.x.dx/8;
+}
 
