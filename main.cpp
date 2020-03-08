@@ -219,3 +219,39 @@ void getmouse(int *button,int *x,int *y)
   *y=output.x.dx/8;
 }
 
+
+int check_xy(int x,int y)
+{
+  /* Mid keys */
+  if(x>=11 && y>=16 && x<=12 && y<=18)
+  return 7;
+  if(x>=20 && y>=16 && x<=21 && y<=18)
+  return 8;
+  if(x>=29 && y>=16 && x<=30 && y<=18)
+  return 9;
+  if(x>=38 && y>=16 && x<=39 && y<=18)
+  return 10;
+  if(x>=47 && y>=16 && x<=48 && y<=18)
+  return 11;
+  if(x>=56 && y>=16 && x<=57 && y<=18)
+  return 0;
+  if(x>=65 && y>=16 && x<=66 && y<=18)
+  return 12;
+
+  /* Big keys */
+  if(x>=8 && y>=16 && x<=15 && y<=22)
+  return 0;
+  if(x>=17 && y>=16 && x<=24 && y<=22)
+  return 1;
+  if(x>=26 && y>=16 && x<=33 && y<=22)
+  return 2;
+  if(x>=35 && y>=16 && x<=42 && y<=22)
+  return 3;
+  if(x>=44 && y>=16 && x<=51 && y<=22)
+  return 4;
+  if(x>=53 && y>=16 && x<=60 && y<=22)
+  return 5;
+  if(x>=62 && y>=16 && x<=69 && y<=22)
+  return 6;
+  return (-1);  /*no key pressed */
+}
