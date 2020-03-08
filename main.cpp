@@ -136,3 +136,25 @@ void setupscreen() /* Display screen settings */
 
 }
 
+void pianokey(int x,int y) /* Piano key display settings */
+{
+ textbackground(color.MIDKEY);
+ textcolor(color.BIGKEY);
+ gotoxy(x,y);
+ cprintf("ÛÛÛ  ÛÛÛ");
+ gotoxy(x,y+1);
+ cprintf("ÛÛÛ  ÛÛÛ");
+ gotoxy(x,y+2);
+ cprintf("ÛÛÛ  ÛÛÛ");
+ gotoxy(x,y+3);
+ cprintf("ÛÛÛÛÞÛÛÛ");
+ gotoxy(x,y+4);
+ cprintf("ÛÛÛÛÞÛÛÛ");
+ gotoxy(x,y+5);
+ cprintf("ÛÛÛÛÞÛÛÛ");
+ gotoxy(x,y+6);
+ cprintf("ÛÛÛÛÞÛÛÛ");
+ gotoxy(x,y);
+}
+
+
