@@ -54,6 +54,6 @@ int main(){
 
     pointer(SHOW);
     setupscreen();
-    exitcode=-1;
-    
+    exitcode=1;
+
 }
