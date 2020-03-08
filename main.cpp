@@ -18,3 +18,7 @@ class piano
             }
 }color;
 
+void drawpiano(int x,int y);
+int check_xy(int x, int y);
+void BOX(int c,int r,int c1,int r1,int col);
+int initmouse();
