@@ -49,6 +49,8 @@ int main(){
     char ch;
     if(initmouse()==-1){
         //TERMINATES THE PROGRAM IF MOUSE IS NOT CONNECTED
+        clrscr();
+        cout<<"\n\n -----NO MOUSE CONNECTED----- \n\n"
 
     }
 
