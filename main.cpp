@@ -185,4 +185,10 @@ void BOX(int c,int r,int c1,int r1,int col)
  }
 }
 
+int initmouse()
+{
+ input.x.ax=0;
+ int86(0x33,&input,&output);
+ return(output.x.ax==0 ? -1 : 0);
+}
 
