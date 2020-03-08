@@ -40,3 +40,20 @@ void showbar(int t)
 	cprintf("Û");
  }
 }
+
+
+//MAIN FUNCTION
+
+int main(){
+    int b,x,y,key;
+    char ch;
+    if(initmouse()==-1){
+        //TERMINATES THE PROGRAM IF MOUSE IS NOT CONNECTED
+
+    }
+
+    pointer(SHOW);
+    setupscreen();
+    exitcode=-1;
+    
+}
