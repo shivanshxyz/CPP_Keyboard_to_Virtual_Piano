@@ -57,5 +57,12 @@ int main(){
     pointer(SHOW);
     setupscreen();
     exitcode=1;
+    while(exitcode){}
+    textbackground(0);
+    clrscr();
+    _setcursortype(_NORMALCURSOR);
+    return 0;
 
-}
+}  //EOF
+
+
