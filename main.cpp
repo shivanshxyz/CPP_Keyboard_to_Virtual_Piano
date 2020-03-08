@@ -8,18 +8,18 @@ union REGS input,output;
 
 class piano
 {
-    public:int BIGKEY,MIDKEY,back,border;
-            piano()  //CONSTRUCTOR INITIALIZATION
-            {
-                BIGKEY=15;
-                MIDKEY=1;
-                back=7;
-                border=15
-            }
+ public:int BIGKEY,MIDKEY,back,border;
+	piano()  //CONSTRUCTOR INITIALIZATION
+	{
+		BIGKEY=15;
+		MIDKEY=1;
+		back=7;
+		border=15;
+	}
 }color;
 
 void drawpiano(int x,int y);
-int check_xy(int x, int y);
+int check_xy(int x,int y);
 void BOX(int c,int r,int c1,int r1,int col);
 int initmouse();
 void setupscreen();
@@ -42,74 +42,71 @@ void showbar(int t)
 }
 
 
-//MAIN FUNCTION
+int main()
+{
+ int b,x,y,key;
+ char ch;
+ if(initmouse()==-1) //TERMINATES THE PROGRAM IF THE MOUSE IS NOT CONNECTED
+ {
+	clrscr();
+	cout<<"\n\n ----------NO MOUSE---------- !\n\n";
+	exit(1);
+ }
+ pointer(SHOW);
+ setupscreen();
+ exitcode=1;
+ while(exitcode)
+ {
+	if(kbhit())
+	{
+	   ch=getch();
+	   if(ch==27) break;
+	   if(ch==75) a--;
+	   if(ch==77) a++;
+	   check_keys(x,y);
+	   switch(ch)
+	   {
+		case 'a':case'A':key=0;break;
+		case 's':case'S':key=1;break;
+		case 'd':case'D':key=2;break;
+		case 'f':case'F':key=3;break;
+		case 'j':case'J':key=4;break;
+		case 'k':case'K':key=5;break;
+		case 'l':case'L':key=6;break;
+	   }
+	   sound(freq[key]*a);
+	   delay(80);
+	   nosound();
+	}
+	getmouse(&b,&x,&y);
+	if(b==1)
+	{
+		while(b==1)
+		{
+			getmouse(&b,&x,&y);
+			key=check_xy(x,y);
+			if(key!=-1 && key<7)
+			{
+				sound(freq[key]*a);
+			}
+			else if(key>6)
+			     {
+				 sound(freq[12-key]*(a/2));
+			     }
+		}
+		nosound();
+		check_keys(x,y);
+	}
+ }
+ textbackground(0);
+ clrscr();
+ _setcursortype(_NORMALCURSOR);
+return 0;
+}
 
-int main(){
-    int b,x,y,key;
-    char ch;
-    if(initmouse()==-1){
-        //TERMINATES THE PROGRAM IF MOUSE IS NOT CONNECTED
-        clrscr();
-        cout<<"\n\n -----NO MOUSE CONNECTED----- \n\n"
+//END OF MAIN FUNCTION
 
-    }
-
-    pointer(SHOW);
-    setupscreen();
-    exitcode=1;
-    while(exitcode)
-    {
-            if(kbhit())
-	        {
-	            ch=getch();
-	            if(ch==27) break;
-	            if(ch==75) a--;
-	            if(ch==77) a++;
-	            check_keys(x,y);
-	            switch(ch)
-	            {
-		            case 'a':case'A':key=0;break;
-		            case 's':case'S':key=1;break;
-		            case 'd':case'D':key=2;break;
-		            case 'f':case'F':key=3;break;
-		            case 'j':case'J':key=4;break;
-		            case 'k':case'K':key=5;break;
-		            case 'l':case'L':key=6;break;
-	            }
-	            sound(freq[key]*a);
-	            delay(80);
-	            nosound();
-	        }
-	        getmouse(&b,&x,&y);
-	        if(b==1)
-	        {
-		        while(b==1)
-		        {
-			        getmouse(&b,&x,&y);
-			        key=check_xy(x,y);
-			        if(key!=-1 && key<7)
-		        	{
-		        		sound(freq[key]*a);
-		        	}
-		        	else if(key>6)
-			        {
-				         sound(freq[12-key]*(a/2));
-			        }
-		    }
-		    nosound();
-		    check_keys(x,y);
-	        }
-        }
-        
-    }
-    textbackground(0);
-    clrscr();
-    _setcursortype(_NORMALCURSOR);
-    return 0;
-
-}  //EOF
-
-void setupscreen() /* Display screen settings */
+void setupscreen() //DISPLAY SCREEN SETTINGS
 {
  _setcursortype(_NOCURSOR);
  textbackground(backcolor);
@@ -136,7 +133,7 @@ void setupscreen() /* Display screen settings */
 
 }
 
-void pianokey(int x,int y) /* Piano key display settings */
+void pianokey(int x,int y) //PIANO KEY DISPLAY SETTINGS
 {
  textbackground(color.MIDKEY);
  textcolor(color.BIGKEY);
@@ -157,10 +154,10 @@ void pianokey(int x,int y) /* Piano key display settings */
  gotoxy(x,y);
 }
 
-void drawpiano(int x,int y) /* Drawing of piano */
+void drawpiano(int x,int y) //DRAWING OF PIANO
 {
  int t=9;
- BOX(x-5,y-3,75,y+8,color.border); /*invoking function box */
+ BOX(x-5,y-3,75,y+8,color.border); //INVOKING FUNCTION BOX
  BOX(x-4,y-2,74,y+7,color.back);
  pianokey(x,y);
  pianokey(x+t,y);
@@ -184,20 +181,17 @@ void BOX(int c,int r,int c1,int r1,int col)
 	}
  }
 }
-
 int initmouse()
 {
  input.x.ax=0;
  int86(0x33,&input,&output);
  return(output.x.ax==0 ? -1 : 0);
 }
-
 void pointer(int on)
 {
    input.x.ax=on;
    int86(0x33,&input,&output);
 }
-
 void restrictmouse(int x1,int y1,int x2,int y2)
 {
    input.x.ax=7;
@@ -209,7 +203,6 @@ void restrictmouse(int x1,int y1,int x2,int y2)
    input.x.dx=y2/8;
    int86(0x33,&input,&output);
 }
-
 void getmouse(int *button,int *x,int *y)
 {
   input.x.ax=3;
@@ -218,8 +211,6 @@ void getmouse(int *button,int *x,int *y)
   *x=output.x.cx/8;
   *y=output.x.dx/8;
 }
-
-
 int check_xy(int x,int y)
 {
   /* Mid keys */
@@ -253,9 +244,8 @@ int check_xy(int x,int y)
   return 5;
   if(x>=62 && y>=16 && x<=69 && y<=22)
   return 6;
-  return (-1);  /*no key pressed */
+  return (-1);  //NO KEY PRESSED
 }
-
 void check_keys(int x,int y)
 {
   if(x==7 && y==4)  a++;
