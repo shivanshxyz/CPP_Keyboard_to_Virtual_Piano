@@ -157,4 +157,16 @@ void pianokey(int x,int y) /* Piano key display settings */
  gotoxy(x,y);
 }
 
-
+void drawpiano(int x,int y) /* Drawing of piano */
+{
+ int t=9;
+ BOX(x-5,y-3,75,y+8,color.border); /*invoking function box */
+ BOX(x-4,y-2,74,y+7,color.back);
+ pianokey(x,y);
+ pianokey(x+t,y);
+ pianokey(x+t*2,y);
+ pianokey(x+t*3,y);
+ pianokey(x+t*4,y);
+ pianokey(x+t*5,y);
+ pianokey(x+t*6,y);
+}
