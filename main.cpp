@@ -255,3 +255,16 @@ int check_xy(int x,int y)
   return 6;
   return (-1);  /*no key pressed */
 }
+
+void check_keys(int x,int y)
+{
+  if(x==7 && y==4)  a++;
+  if(x==3 && y==4)  a--;
+  if(a<1) a=1;else if(a>30) a=30;
+  textcolor(15);textbackground(1);
+  gotoxy(5,5);cprintf("   ");
+  if(a<10) gotoxy(6,5);
+  else gotoxy(5,5);
+  cprintf("%d",a);
+  if(x>=69 && y>=4 && x<=74 && y<=4) exitcode=0;
+}
